@@ -3,217 +3,216 @@ import cv2
 import math
 
 
-def perspectiveRightZoomOutX(image, MinX, MinY, MaxX, MaxY, perspectiveFactor):
+def perspectiveRightZoomOutX(image, imageWidth, imageHeight, perspectiveFactor):
     perspectiveFactorX = perspectiveFactor
-    initCoord = np.float32([[MinX,MinY],[MinX,MaxY],[MaxX,MinY],[MaxX,MaxY]])
-    finalCoord = np.float32([[MinX,MinY],[MinX,MaxY],[MaxX,MinY+perspectiveFactorX],[MaxX,MaxY-perspectiveFactorX]])
-    M = cv2.getPerspectiveTransform(initCoord,finalCoord)
-    perspectiveRightZoomOutXImage = cv2.warpPerspective(image,M,(0,0))
+    initCoord = np.float32([[0, 0], [0, imageHeight], [imageWidth, 0], [imageWidth, imageHeight]])
+    finalCoord = np.float32([[0, 0], [0, imageHeight], [imageWidth, 0 + perspectiveFactorX], [imageWidth, imageHeight - perspectiveFactorX]])
+    M = cv2.getPerspectiveTransform(initCoord, finalCoord)
+    perspectiveRightZoomOutXImage = cv2.warpPerspective(image, M, (0, 0))
     return perspectiveRightZoomOutXImage
 
 
-def perspectiveLeftZoomOutX(image, MinX, MinY, MaxX, MaxY, perspectiveFactor):
+def perspectiveLeftZoomOutX(image, imageWidth, imageHeight, perspectiveFactor):
     perspectiveFactorX = perspectiveFactor
-    initCoord = np.float32([[MinX,MinY],[MinX,MaxY],[MaxX,MinY],[MaxX,MaxY]])
-    finalCoord = np.float32([[MinX,MinY+perspectiveFactorX],[MinX,MaxY-perspectiveFactorX],[MaxX,MinY],[MaxX,MaxY]])
-    M = cv2.getPerspectiveTransform(initCoord,finalCoord)
-    perspectiveLeftZoomOutXImage = cv2.warpPerspective(image,M,(0,0))
+    initCoord = np.float32([[0, 0], [0, imageHeight], [imageWidth, 0], [imageWidth, imageHeight]])
+    finalCoord = np.float32([[0, 0 + perspectiveFactorX], [0, imageHeight - perspectiveFactorX], [imageWidth, 0], [imageWidth, imageHeight]])
+    M = cv2.getPerspectiveTransform(initCoord, finalCoord)
+    perspectiveLeftZoomOutXImage = cv2.warpPerspective(image, M, (0, 0))
     return perspectiveLeftZoomOutXImage
 
 
-def perspectiveRightZoomOutY(image, MinX, MinY, MaxX, MaxY, perspectiveFactor):
+def perspectiveRightZoomOutY(image, imageWidth, imageHeight, perspectiveFactor):
     perspectiveFactorY = perspectiveFactor
-    initCoord = np.float32([[MinX,MinY],[MinX,MaxY],[MaxX,MinY],[MaxX,MaxY]])
-    finalCoord = np.float32([[MinX+perspectiveFactorY,MinY],[MinX,MaxY],[MaxX-perspectiveFactorY,MinY],[MaxX,MaxY]])
-    M = cv2.getPerspectiveTransform(initCoord,finalCoord)
-    perspectiveRightZoomOutYImage = cv2.warpPerspective(image,M,(0,0))
+    initCoord = np.float32([[0, 0], [0, imageHeight], [imageWidth, 0], [imageWidth, imageHeight]])
+    finalCoord = np.float32([[0 + perspectiveFactorY, 0], [0, imageHeight], [imageWidth - perspectiveFactorY, 0], [imageWidth, imageHeight]])
+    M = cv2.getPerspectiveTransform(initCoord, finalCoord)
+    perspectiveRightZoomOutYImage = cv2.warpPerspective(image, M, (0, 0))
     return perspectiveRightZoomOutYImage
 
 
-def perspectiveLeftZoomOutY(image, MinX, MinY, MaxX, MaxY, perspectiveFactor):
+def perspectiveLeftZoomOutY(image, imageWidth, imageHeight, perspectiveFactor):
     perspectiveFactorY = perspectiveFactor
-    initCoord = np.float32([[MinX,MinY],[MinX,MaxY],[MaxX,MinY],[MaxX,MaxY]])
-    finalCoord = np.float32([[MinX,MinY],[MinX+perspectiveFactorY,MaxY],[MaxX-perspectiveFactorY,MinY],[MaxX,MaxY]])
-    M = cv2.getPerspectiveTransform(initCoord,finalCoord)
-    perspectiveLeftZoomOutYImage = cv2.warpPerspective(image,M,(0,0))
+    initCoord = np.float32([[0, 0], [0, imageHeight], [imageWidth, 0], [imageWidth, imageHeight]])
+    finalCoord = np.float32([[0, 0], [0 + perspectiveFactorY, imageHeight], [imageWidth - perspectiveFactorY, 0], [imageWidth, imageHeight]])
+    M = cv2.getPerspectiveTransform(initCoord, finalCoord)
+    perspectiveLeftZoomOutYImage = cv2.warpPerspective(image, M, (0, 0))
     return perspectiveLeftZoomOutYImage
 
 
-def perspectiveRightZoomInX(image, MinX, MinY, MaxX, MaxY, perspectiveFactor):
+def perspectiveRightZoomInX(image, imageWidth, imageHeight, perspectiveFactor):
     perspectiveFactorX = perspectiveFactor
-    initCoord = np.float32([[MinX,MinY],[MinX,MaxY],[MaxX,MinY],[MaxX,MaxY]])
-    finalCoord = np.float32([[MinX,MinY],[MinX,MaxY],[MaxX,MinY-perspectiveFactorX],[MaxX,MaxY+perspectiveFactorX]])
-    M = cv2.getPerspectiveTransform(initCoord,finalCoord)
-    perspectiveRightZoomInXImage = cv2.warpPerspective(image,M,(0,0))
+    initCoord = np.float32([[0, 0], [0, imageHeight], [imageWidth, 0], [imageWidth, imageHeight]])
+    finalCoord = np.float32([[0, 0], [0, imageHeight], [imageWidth, 0 - perspectiveFactorX], [imageWidth, imageHeight + perspectiveFactorX]])
+    M = cv2.getPerspectiveTransform(initCoord, finalCoord)
+    perspectiveRightZoomInXImage = cv2.warpPerspective(image, M, (0, 0))
     return perspectiveRightZoomInXImage
 
 
-def perspectiveLeftZoomInX(image, MinX, MinY, MaxX, MaxY, perspectiveFactor):
+def perspectiveLeftZoomInX(image, imageWidth, imageHeight, perspectiveFactor):
     perspectiveFactorX = perspectiveFactor
-    initCoord = np.float32([[MinX,MinY],[MinX,MaxY],[MaxX,MinY],[MaxX,MaxY]])
-    finalCoord = np.float32([[MinX,MinY-perspectiveFactorX],[MinX,MaxY+perspectiveFactorX],[MaxX,MinY],[MaxX,MaxY]])
-    M = cv2.getPerspectiveTransform(initCoord,finalCoord)
-    perspectiveLeftZoomInXImage = cv2.warpPerspective(image,M,(0,0))
+    initCoord = np.float32([[0, 0], [0, imageHeight], [imageWidth, 0], [imageWidth, imageHeight]])
+    finalCoord = np.float32([[0, 0 - perspectiveFactorX], [0, imageHeight + perspectiveFactorX], [imageWidth, 0], [imageWidth, imageHeight]])
+    M = cv2.getPerspectiveTransform(initCoord, finalCoord)
+    perspectiveLeftZoomInXImage = cv2.warpPerspective(image, M, (0, 0))
     return perspectiveLeftZoomInXImage
 
 
-def perspectiveRightZoomInY(image, MinX, MinY, MaxX, MaxY, perspectiveFactor):
+def perspectiveRightZoomInY(image, imageWidth, imageHeight, perspectiveFactor):
     perspectiveFactorY = perspectiveFactor
-    initCoord = np.float32([[MinX,MinY],[MinX,MaxY],[MaxX,MinY],[MaxX,MaxY]])
-    finalCoord = np.float32([[MinX-perspectiveFactorY,MinY],[MinX,MaxY],[MaxX+perspectiveFactorY,MinY],[MaxX,MaxY]])
-    M = cv2.getPerspectiveTransform(initCoord,finalCoord)
-    perspectiveRightZoomInYImage = cv2.warpPerspective(image,M,(0,0))
+    initCoord = np.float32([[0, 0], [0, imageHeight], [imageWidth, 0], [imageWidth, imageHeight]])
+    finalCoord = np.float32([[0 - perspectiveFactorY, 0], [0, imageHeight], [imageWidth + perspectiveFactorY, 0], [imageWidth, imageHeight]])
+    M = cv2.getPerspectiveTransform(initCoord, finalCoord)
+    perspectiveRightZoomInYImage = cv2.warpPerspective(image, M, (0, 0))
     return perspectiveRightZoomInYImage
 
 
-def perspectiveLeftZoomInY(image, MinX, MinY, MaxX, MaxY, perspectiveFactor):
+def perspectiveLeftZoomInY(image, imageWidth, imageHeight, perspectiveFactor):
     perspectiveFactorY = perspectiveFactor
-    initCoord = np.float32([[MinX,MinY],[MinX,MaxY],[MaxX,MinY],[MaxX,MaxY]])
-    finalCoord = np.float32([[MinX,MinY],[MinX-perspectiveFactorY,MaxY],[MaxX-perspectiveFactorY,MinY],[MaxX,MaxY]])
-    M = cv2.getPerspectiveTransform(initCoord,finalCoord)
-    perspectiveLeftZoomInYImage = cv2.warpPerspective(image,M,(0,0))
+    initCoord = np.float32([[0, 0], [0, imageHeight], [imageWidth, 0], [imageWidth, imageHeight]])
+    finalCoord = np.float32([[0, 0], [0 - perspectiveFactorY, imageHeight], [imageWidth - perspectiveFactorY, 0], [imageWidth, imageHeight]])
+    M = cv2.getPerspectiveTransform(initCoord, finalCoord)
+    perspectiveLeftZoomInYImage = cv2.warpPerspective(image, M, (0, 0))
     return perspectiveLeftZoomInYImage
 
 
-def translatePositiveX(image, MinX, MinY, MaxX, MaxY, translateFactor):
+def translatePositiveX(image, imageWidth, imageHeight, translateFactor):
     translateFactorX = translateFactor
-    initCoord = np.float32([[MinX,MinY],[MinX,MaxY],[MaxX,MinY],[MaxX,MaxY]])
-    finalCoord = np.float32([[MinX-translateFactorX,MinY],[MinX-translateFactorX,MaxY],[MaxX-translateFactorX,MinY],[MaxX-translateFactorX,MaxY]])
-    M = cv2.getPerspectiveTransform(initCoord,finalCoord)
-    translatePositiveXImage = cv2.warpPerspective(image,M,(0,0))
+    initCoord = np.float32([[0, 0], [0, imageHeight], [imageWidth, 0], [imageWidth, imageHeight]])
+    finalCoord = np.float32([[0 - translateFactorX, 0], [0 - translateFactorX, imageHeight], [imageWidth - translateFactorX, 0], [imageWidth - translateFactorX, imageHeight]])
+    M = cv2.getPerspectiveTransform(initCoord, finalCoord)
+    translatePositiveXImage = cv2.warpPerspective(image, M, (0, 0))
     return translatePositiveXImage
 
 
-def translateNegativeX(image, MinX, MinY, MaxX, MaxY, translateFactor):
+def translateNegativeX(image, imageWidth, imageHeight, translateFactor):
     translateFactorX = translateFactor
-    initCoord = np.float32([[MinX,MinY],[MinX,MaxY],[MaxX,MinY],[MaxX,MaxY]])
-    finalCoord = np.float32([[MinX+translateFactorX,MinY],[MinX+translateFactorX,MaxY],[MaxX+translateFactorX,MinY],[MaxX+translateFactorX,MaxY]])
-    M = cv2.getPerspectiveTransform(initCoord,finalCoord)
-    translateNegativeXImage = cv2.warpPerspective(image,M,(0,0))
+    initCoord = np.float32([[0, 0], [0, imageHeight], [imageWidth, 0], [imageWidth, imageHeight]])
+    finalCoord = np.float32([[0 + translateFactorX, 0], [0 + translateFactorX, imageHeight], [imageWidth + translateFactorX, 0], [imageWidth + translateFactorX, imageHeight]])
+    M = cv2.getPerspectiveTransform(initCoord, finalCoord)
+    translateNegativeXImage = cv2.warpPerspective(image, M, (0, 0))
     return translateNegativeXImage
 
 
-def translatePositiveY(image, MinX, MinY, MaxX, MaxY, translateFactor):
+def translatePositiveY(image, imageWidth, imageHeight, translateFactor):
     translateFactorY = translateFactor
-    initCoord = np.float32([[MinX,MinY],[MinX,MaxY],[MaxX,MinY],[MaxX,MaxY]])
-    finalCoord = np.float32([[MinX,MinY-translateFactorY],[MinX,MaxY-translateFactorY],[MaxX,MinY-translateFactorY],[MaxX,MaxY-translateFactorY]])
-    M = cv2.getPerspectiveTransform(initCoord,finalCoord)
-    translatePositiveYImage = cv2.warpPerspective(image,M,(0,0))
+    initCoord = np.float32([[0, 0], [0, imageHeight], [imageWidth, 0], [imageWidth, imageHeight]])
+    finalCoord = np.float32([[0, 0 - translateFactorY], [0, imageHeight - translateFactorY], [imageWidth, 0 - translateFactorY], [imageWidth, imageHeight - translateFactorY]])
+    M = cv2.getPerspectiveTransform(initCoord, finalCoord)
+    translatePositiveYImage = cv2.warpPerspective(image, M, (0, 0))
     return translatePositiveYImage
 
 
-def translateNegativeY(image, MinX, MinY, MaxX, MaxY, translateFactor):
+def translateNegativeY(image, imageWidth, imageHeight, translateFactor):
     translateFactorY = translateFactor
-    initCoord = np.float32([[MinX,MinY],[MinX,MaxY],[MaxX,MinY],[MaxX,MaxY]])
-    finalCoord = np.float32([[MinX,MinY+translateFactorY],[MinX,MaxY+translateFactorY],[MaxX,MinY+translateFactorY],[MaxX,MaxY+translateFactorY]])
-    M = cv2.getPerspectiveTransform(initCoord,finalCoord)
-    translateNegativeYImage = cv2.warpPerspective(image,M,(0,0))
+    initCoord = np.float32([[0, 0], [0, imageHeight], [imageWidth, 0], [imageWidth, imageHeight]])
+    finalCoord = np.float32([[0, 0 + translateFactorY], [0, imageHeight + translateFactorY], [imageWidth, 0 + translateFactorY], [imageWidth, imageHeight + translateFactorY]])
+    M = cv2.getPerspectiveTransform(initCoord, finalCoord)
+    translateNegativeYImage = cv2.warpPerspective(image, M, (0, 0))
     return translateNegativeYImage
 
-def scalePositiveX(image, MinX, MinY, MaxX, MaxY, scaleFactor):
-    scaleX = (scaleFactor*MaxX)
-    initCoord = np.float32([[MinX,MinY],[MinX,MaxY],[MaxX,MinY],[MaxX,MaxY]])
-    finalCoord = np.float32([[MinX-scaleX,MinY],[MinX-scaleX,MaxY],[MaxX+scaleX,MinY],[MaxX+scaleX,MaxY]])
-    M = cv2.getPerspectiveTransform(initCoord,finalCoord)
-    scalePositiveXImage = cv2.warpPerspective(image,M,(0,0))
+
+def scalePositiveX(image, imageWidth, imageHeight, scaleFactor):
+    scaleX = (scaleFactor * imageWidth)
+    initCoord = np.float32([[0, 0], [0, imageHeight], [imageWidth, 0], [imageWidth, imageHeight]])
+    finalCoord = np.float32([[0 - scaleX, 0], [0 - scaleX, imageHeight], [imageWidth + scaleX, 0], [imageWidth + scaleX, imageHeight]])
+    M = cv2.getPerspectiveTransform(initCoord, finalCoord)
+    scalePositiveXImage = cv2.warpPerspective(image, M, (0, 0))
     return scalePositiveXImage
 
 
-def scaleNegativeX(image, MinX, MinY, MaxX, MaxY, scaleFactor):
-    scaleX = (scaleFactor*MaxX)
-    initCoord = np.float32([[MinX,MinY],[MinX,MaxY],[MaxX,MinY],[MaxX,MaxY]])
-    finalCoord = np.float32([[MinX+scaleX,MinY],[MinX+scaleX,MaxY],[MaxX-scaleX,MinY],[MaxX-scaleX,MaxY]])
-    M = cv2.getPerspectiveTransform(initCoord,finalCoord)
-    scaleNegativeXImage = cv2.warpPerspective(image,M,(0,0))
+def scaleNegativeX(image, imageWidth, imageHeight, scaleFactor):
+    scaleX = (scaleFactor * imageWidth)
+    initCoord = np.float32([[0, 0], [0, imageHeight], [imageWidth, 0], [imageWidth, imageHeight]])
+    finalCoord = np.float32([[0 + scaleX, 0], [0 + scaleX, imageHeight], [imageWidth - scaleX, 0], [imageWidth - scaleX, imageHeight]])
+    M = cv2.getPerspectiveTransform(initCoord, finalCoord)
+    scaleNegativeXImage = cv2.warpPerspective(image, M, (0, 0))
     return scaleNegativeXImage
 
-def scalePositiveY(image, MinX, MinY, MaxX, MaxY, scaleFactor):
-    scaleY = (scaleFactor*MaxY)
-    initCoord = np.float32([[MinX,MinY],[MinX,MaxY],[MaxX,MinY],[MaxX,MaxY]])
-    finalCoord = np.float32([[MinX,MinY-scaleY],[MinX,MaxY+scaleY],[MaxX,MinY-scaleY],[MaxX,MaxY+scaleY]])
-    M = cv2.getPerspectiveTransform(initCoord,finalCoord)
-    scalePositiveYImage = cv2.warpPerspective(image,M,(0,0))
+def scalePositiveY(image, imageWidth, imageHeight, scaleFactor):
+    scaleY = (scaleFactor * imageHeight)
+    initCoord = np.float32([[0, 0], [0, imageHeight], [imageWidth, 0], [imageWidth, imageHeight]])
+    finalCoord = np.float32([[0, 0 - scaleY], [0, imageHeight + scaleY], [imageWidth, 0 - scaleY], [imageWidth, imageHeight + scaleY]])
+    M = cv2.getPerspectiveTransform(initCoord, finalCoord)
+    scalePositiveYImage = cv2.warpPerspective(image, M, (0, 0))
     return scalePositiveYImage
 
 
-def scaleNegativeY(image, MinX, MinY, MaxX, MaxY, scaleFactor):
-    scaleY = (scaleFactor*MaxY)
-    initCoord = np.float32([[MinX,MinY],[MinX,MaxY],[MaxX,MinY],[MaxX,MaxY]])
-    finalCoord = np.float32([[MinX,MinY+scaleY],[MinX,MaxY-scaleY],[MaxX,MinY+scaleY],[MaxX,MaxY-scaleY]])
-    M = cv2.getPerspectiveTransform(initCoord,finalCoord)
-    scaleNegativeYImage = cv2.warpPerspective(image,M,(0,0))
+def scaleNegativeY(image, imageWidth, imageHeight, scaleFactor):
+    scaleY = (scaleFactor * imageHeight)
+    initCoord = np.float32([[0, 0], [0, imageHeight], [imageWidth, 0], [imageWidth, imageHeight]])
+    finalCoord = np.float32([[0, 0 + scaleY], [0, imageHeight - scaleY], [imageWidth, 0 + scaleY], [imageWidth, imageHeight - scaleY]])
+    M = cv2.getPerspectiveTransform(initCoord, finalCoord)
+    scaleNegativeYImage = cv2.warpPerspective(image, M, (0, 0))
     return scaleNegativeYImage
 
 
-def scalePositiveXY(image, MinX, MinY, MaxX, MaxY, scaleFactor):
-    scaleX = (scaleFactor*MaxX)
-    scaleY = (scaleFactor*MaxY)
-    initCoord = np.float32([[MinX,MinY],[MinX,MaxY],[MaxX,MinY],[MaxX,MaxY]])
-    finalCoord = np.float32([[MinX-scaleX,MinY-scaleY],[MinX-scaleX,MaxY+scaleY],[MaxX+scaleX,MinY-scaleY],[MaxX+scaleX,MaxY+scaleY]])
-    M = cv2.getPerspectiveTransform(initCoord,finalCoord)
-    scalePositiveXYImage = cv2.warpPerspective(image,M,(0,0))
+def scalePositiveXY(image, imageWidth, imageHeight, scaleFactor):
+    scaleX = (scaleFactor * imageWidth)
+    scaleY = (scaleFactor * imageHeight)
+    initCoord = np.float32([[0, 0], [0, imageHeight], [imageWidth, 0], [imageWidth, imageHeight]])
+    finalCoord = np.float32([[0 - scaleX, 0 - scaleY], [0 - scaleX, imageHeight + scaleY], [imageWidth + scaleX, 0 - scaleY], [imageWidth + scaleX, imageHeight + scaleY]])
+    M = cv2.getPerspectiveTransform(initCoord, finalCoord)
+    scalePositiveXYImage = cv2.warpPerspective(image, M, (0, 0))
     return scalePositiveXYImage
 
 
-def scaleNegativeXY(image, MinX, MinY, MaxX, MaxY, scaleFactor):
-    scaleX = (scaleFactor*MaxX)
-    scaleY = (scaleFactor*MaxY)
-    initCoord = np.float32([[MinX,MinY],[MinX,MaxY],[MaxX,MinY],[MaxX,MaxY]])
-    finalCoord = np.float32([[MinX+scaleX,MinY+scaleY],[MinX+scaleX,MaxY-scaleY],[MaxX-scaleX,MinY+scaleY],[MaxX-scaleX,MaxY-scaleY]])
-    M = cv2.getPerspectiveTransform(initCoord,finalCoord)
-    scaleNegativeXYImage = cv2.warpPerspective(image,M,(0,0))
+def scaleNegativeXY(image, imageWidth, imageHeight, scaleFactor):
+    scaleX = (scaleFactor * imageWidth)
+    scaleY = (scaleFactor * imageHeight)
+    initCoord = np.float32([[0, 0], [0, imageHeight], [imageWidth, 0], [imageWidth, imageHeight]])
+    finalCoord = np.float32([[0 + scaleX, 0 + scaleY], [0 + scaleX, imageHeight - scaleY], [imageWidth - scaleX, 0 + scaleY], [imageWidth - scaleX, imageHeight - scaleY]])
+    M = cv2.getPerspectiveTransform(initCoord, finalCoord)
+    scaleNegativeXYImage = cv2.warpPerspective(image, M, (0, 0))
     return scaleNegativeXYImage
 
 
-def shearX(image, MinX, MinY, MaxX, MaxY,shearFactorBottomX=0, shearFactorTopX=0):
-    initCoord = np.float32([[MinX,MinY],[MinX,MaxY],[MaxX,MinY],[MaxX,MaxY]])
-    finalCoord = np.float32([[MinX+shearFactorTopX,MinY],[MinX+shearFactorBottomX,MaxY],[MaxX+shearFactorTopX,MinY],[MaxX+shearFactorBottomX,MaxY]])
-    M = cv2.getPerspectiveTransform(initCoord,finalCoord)
-    shearXImage = cv2.warpPerspective(image,M,(0,0))
+def shearX(image, imageWidth, imageHeight, shearFactorBottomX=0, shearFactorTopX=0):
+    initCoord = np.float32([[0, 0], [0, imageHeight], [imageWidth, 0], [imageWidth, imageHeight]])
+    finalCoord = np.float32([[0 + shearFactorTopX, 0], [0 + shearFactorBottomX, imageHeight], [imageWidth + shearFactorTopX, 0], [imageWidth + shearFactorBottomX, imageHeight]])
+    M = cv2.getPerspectiveTransform(initCoord, finalCoord)
+    shearXImage = cv2.warpPerspective(image, M, (0, 0))
     return shearXImage
 
 
-def shearY(image, MinX, MinY, MaxX, MaxY,shearFactorLeftY=0, shearFactorRightY=0):
-    initCoord = np.float32([[MinX,MinY],[MinX,MaxY],[MaxX,MinY],[MaxX,MaxY]])
-    finalCoord = np.float32([[MinX,MinY-shearFactorLeftY],[MinX,MaxY-shearFactorLeftY],[MaxX,MinY-shearFactorRightY],[MaxX,MaxY-shearFactorRightY]])
-    M = cv2.getPerspectiveTransform(initCoord,finalCoord)
-    shearYImage = cv2.warpPerspective(image,M,(0,0))
+def shearY(image, imageWidth, imageHeight, shearFactorLeftY=0, shearFactorRightY=0):
+    initCoord = np.float32([[0, 0], [0, imageHeight], [imageWidth, 0], [imageWidth, imageHeight]])
+    finalCoord = np.float32([[0, 0 - shearFactorLeftY], [0, imageHeight - shearFactorLeftY], [imageWidth, 0 - shearFactorRightY], [imageWidth, imageHeight - shearFactorRightY]])
+    M = cv2.getPerspectiveTransform(initCoord, finalCoord)
+    shearYImage = cv2.warpPerspective(image, M, (0, 0))
     return shearYImage
 
 
-def rotateX(image, width, height, rotateXAngleBy):
-    MinX, MinY, MaxX, MaxY = 0, 0, width, height
-    rotateXAngleBy = 60 + rotateXAngleBy/3
-    subtractX = math.sqrt((MaxY*MaxY)-((MaxY/2)*(MaxY/2)))
-    subtractY = math.cos(math.radians(rotateXAngleBy))*MaxY
-    LineX = math.sin(math.radians(rotateXAngleBy))*MaxX 
-    LineY = MaxX/2
+def rotateX(image, imageWidth, imageHeight, rotateXAngleBy):
+    rotateXAngleBy = 60 + rotateXAngleBy / 3
+    subtractX = math.sqrt((imageHeight * imageHeight) - ((imageHeight / 2) * (imageHeight / 2)))
+    subtractY = math.cos(math.radians(rotateXAngleBy)) * imageHeight
+    LineX = math.sin(math.radians(rotateXAngleBy)) * imageWidth
+    LineY = imageWidth / 2
     X = LineX - subtractX
     Y = LineY - subtractY
-    initCoord = np.float32([[MinX,MinY],[MinX,MaxY],[MaxX,MinY],[MaxX,MaxY]])
-    finalCoord = np.float32([[MinX+X,MinY+Y],[MinX-X,MaxY-Y],[MaxX-X,MinY+Y],[MaxX+X,MaxY-Y]])
-    M = cv2.getPerspectiveTransform(initCoord,finalCoord)
-    rotateXImage = cv2.warpPerspective(image,M,(0,0))
+    initCoord = np.float32([[0, 0], [0, imageHeight], [imageWidth, 0], [imageWidth, imageHeight]])
+    finalCoord = np.float32([[0 + X, 0 + Y], [0 - X, imageHeight - Y], [imageWidth - X, 0 + Y], [imageWidth + X, imageHeight - Y]])
+    M = cv2.getPerspectiveTransform(initCoord, finalCoord)
+    rotateXImage = cv2.warpPerspective(image, M, (0, 0))
     return rotateXImage
 
 
 def rotateY(image, width, height, rotateYAngleBy):
-    MinX, MinY, MaxX, MaxY = 0, 0, width, height
-    rotateYAngleBy = 60 + rotateYAngleBy/3
-    subtractY = math.sqrt((MaxX*MaxX)-((MaxX/2)*(MaxX/2)))
-    subtractX = math.cos(math.radians(rotateYAngleBy))*MaxX
-    LineY = math.sin(math.radians(rotateYAngleBy))*MaxX 
-    LineX = MaxX/2
+    rotateYAngleBy = 60 + rotateYAngleBy / 3
+    subtractY = math.sqrt((imageWidth * imageWidth) - ((imageWidth / 2) * (imageWidth / 2)))
+    subtractX = math.cos(math.radians(rotateYAngleBy)) * imageWidth
+    LineY = math.sin(math.radians(rotateYAngleBy)) * imageWidth
+    LineX = imageWidth / 2
     Y = LineY - subtractY
     X = LineX - subtractX
-    initCoord = np.float32([[MinX,MinY],[MinX,MaxY],[MaxX,MinY],[MaxX,MaxY]])
-    finalCoord = np.float32([[MinX+X,MinY-Y],[MinX+X,MaxY+Y],[MaxX-X,MinY+Y],[MaxX-X,MaxY-Y]])
-    M = cv2.getPerspectiveTransform(initCoord,finalCoord)
-    rotateYImage = cv2.warpPerspective(image,M,(0,0))
+    initCoord = np.float32([[0, 0], [0, imageHeight], [imageWidth, 0], [imageWidth, imageHeight]])
+    finalCoord = np.float32([[0 + X, 0 - Y], [0 + X, imageHeight + Y], [imageWidth - X, 0 + Y], [imageWidth - X, imageHeight - Y]])
+    M = cv2.getPerspectiveTransform(initCoord, finalCoord)
+    rotateYImage = cv2.warpPerspective(image, M, (0, 0))
     return rotateYImage
 
 
 def rotateZ(image, width, height, rotateZAngleBY):
-    rotationMatrix = cv2.getRotationMatrix2D((width/2,height/2),(rotateZAngleBY),1)
-    rotateZImage = cv2.warpAffine(image, rotationMatrix, (width,height))
+    rotationMatrix = cv2.getRotationMatrix2D((width / 2, height / 2), (rotateZAngleBY), 1)
+    rotateZImage = cv2.warpAffine(image, rotationMatrix, (width, height))
     return rotateZImage
