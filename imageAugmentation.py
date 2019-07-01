@@ -198,7 +198,7 @@ def rotateX(image, imageWidth, imageHeight, rotateXAngleBy):
     return rotateXImage
 
 
-def rotateY(image, width, height, rotateYAngleBy):
+def rotateY(image, imageWidth, imageHeight, rotateYAngleBy):
     rotateYAngleBy = 60 + rotateYAngleBy / 3
     subtractY = math.sqrt((imageWidth * imageWidth) - ((imageWidth / 2) * (imageWidth / 2)))
     subtractX = math.cos(math.radians(rotateYAngleBy)) * imageWidth
@@ -213,7 +213,7 @@ def rotateY(image, width, height, rotateYAngleBy):
     return rotateYImage
 
 
-def rotateZ(image, width, height, rotateZAngleBY):
-    rotationMatrix = cv2.getRotationMatrix2D((width / 2, height / 2), (rotateZAngleBY), 1)
-    rotateZImage = cv2.warpAffine(image, rotationMatrix, (width, height))
+def rotateZ(image, imageWidth, imageHeight, rotateZAngleBY):
+    rotationMatrix = cv2.getRotationMatrix2D((imageWidth / 2, imageHeight / 2), (rotateZAngleBY), 1)
+    rotateZImage = cv2.warpAffine(image, rotationMatrix, (imageWidth, imageHeight))
     return rotateZImage
