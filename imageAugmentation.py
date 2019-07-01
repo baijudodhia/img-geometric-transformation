@@ -128,6 +128,7 @@ def scaleNegativeX(image, imageWidth, imageHeight, scaleFactor):
     scaleNegativeXImage = cv2.warpPerspective(image, M, (0, 0))
     return scaleNegativeXImage
 
+
 def scalePositiveY(image, imageWidth, imageHeight, scaleFactor):
     scaleY = (scaleFactor * imageHeight)
     initCoord = np.float32([[0, 0], [0, imageHeight], [imageWidth, 0], [imageWidth, imageHeight]])
