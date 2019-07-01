@@ -165,6 +165,22 @@ def scaleNegativeXY(image, MinX, MinY, MaxX, MaxY, scaleFactor):
     return scaleNegativeXYImage
 
 
+def shearX(image, MinX, MinY, MaxX, MaxY,shearFactorBottomX=0, shearFactorTopX=0):
+    initCoord = np.float32([[MinX,MinY],[MinX,MaxY],[MaxX,MinY],[MaxX,MaxY]])
+    finalCoord = np.float32([[MinX+shearFactorTopX,MinY],[MinX+shearFactorBottomX,MaxY],[MaxX+shearFactorTopX,MinY],[MaxX+shearFactorBottomX,MaxY]])
+    M = cv2.getPerspectiveTransform(initCoord,finalCoord)
+    shearXImage = cv2.warpPerspective(image,M,(0,0))
+    return shearXImage
+
+
+def shearY(image, MinX, MinY, MaxX, MaxY,shearFactorLeftY=0, shearFactorRightY=0):
+    initCoord = np.float32([[MinX,MinY],[MinX,MaxY],[MaxX,MinY],[MaxX,MaxY]])
+    finalCoord = np.float32([[MinX,MinY-shearFactorLeftY],[MinX,MaxY-shearFactorLeftY],[MaxX,MinY-shearFactorRightY],[MaxX,MaxY-shearFactorRightY]])
+    M = cv2.getPerspectiveTransform(initCoord,finalCoord)
+    shearYImage = cv2.warpPerspective(image,M,(0,0))
+    return shearYImage
+
+
 def rotateX(image, width, height, rotateXAngleBy):
     MinX, MinY, MaxX, MaxY = 0, 0, width, height
     rotateXAngleBy = 60 + rotateXAngleBy/3
