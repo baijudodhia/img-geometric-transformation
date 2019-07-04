@@ -217,3 +217,33 @@ def rotateZ(image, imageWidth, imageHeight, rotateZAngleBY):
     rotationMatrix = cv2.getRotationMatrix2D((imageWidth / 2, imageHeight / 2), (rotateZAngleBY), 1)
     rotateZImage = cv2.warpAffine(image, rotationMatrix, (imageWidth, imageHeight))
     return rotateZImage
+
+
+def flipX(image, imageWidth, imageHeight):
+    flipFactorX = 120
+    subtractY = math.sqrt((imageWidth * imageWidth) - ((imageWidth / 2) * (imageWidth / 2)))
+    subtractX = math.cos(math.radians(flipFactorX)) * imageWidth
+    LineY = math.sin(math.radians(flipFactorX)) * imageWidth
+    LineX = imageWidth / 2
+    Y = LineY - subtractY
+    X = LineX - subtractX
+    initCoord = np.float32([[0, 0], [0, imageHeight], [imageWidth, 0], [imageWidth, imageHeight]])
+    finalCoord = np.float32([[0 + X, 0 - Y], [0 + X, imageHeight + Y], [imageWidth - X, 0 + Y], [imageWidth - X, imageHeight - Y]])
+    M = cv2.getPerspectiveTransform(initCoord, finalCoord)
+    flipXImage = cv2.warpPerspective(image, M, (0, 0))
+    return flipXImage
+
+
+def flipY(image, imageWidth, imageHeight):
+    flipFactorY = 120
+    subtractX = math.sqrt((imageHeight * imageHeight) - ((imageHeight / 2) * (imageHeight / 2)))
+    subtractY = math.cos(math.radians(flipFactorY)) * imageHeight
+    LineX = math.sin(math.radians(flipFactorY)) * imageWidth
+    LineY = imageWidth / 2
+    X = LineX - subtractX
+    Y = LineY - subtractY
+    initCoord = np.float32([[0, 0], [0, imageHeight], [imageWidth, 0], [imageWidth, imageHeight]])
+    finalCoord = np.float32([[0 + X, 0 + Y], [0 - X, imageHeight - Y], [imageWidth - X, 0 + Y], [imageWidth + X, imageHeight - Y]])
+    M = cv2.getPerspectiveTransform(initCoord, finalCoord)
+    flipYImage = cv2.warpPerspective(image, M, (0, 0))
+    return flipYImage
