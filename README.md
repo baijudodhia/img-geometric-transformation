@@ -13,6 +13,6 @@ Using this Python Script -
 1. Download the "imageAugmentation.py" file from the repository "image_augmentation".
 2. Keep this file in same directory as your python files.
 3. Use "import imageAugmentation as ia" in your python file.
-4. Use the functions with 'ia', for example - "ia.rotateX(image, imageWidth, imageHeight, 60) will return a rotated image by +60 degrees along X Axis.
+4. Use the functions with 'ia', for example - "ia.rotateX(image, imageWidth, imageHeight, 60)" will return a rotated image by +60 degrees along X Axis.
 
 Note - The main intention of this script is to help create dataset for machine learning projects with ease.
