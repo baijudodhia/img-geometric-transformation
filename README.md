@@ -1,5 +1,5 @@
-# Image Augmentation Python Script
-This python script is used to perform various types of Geometric Transformation such as -
+# Image Geometric Transformations
+This python file is used to perform various types of Geometric Transformation such as -
 1. Perspective Change - Zoom In/Zoom Out - Right/Left - X/Y Axis (8 functions)
 2. Translation - Positive/Negative - X/Y Axis (4 functions)
 3. Scaling - Positive/Negative - X/Y/XY Axis (6 functions)
