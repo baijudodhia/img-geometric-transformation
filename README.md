@@ -1,3 +1,6 @@
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/gist/baijudodhia/7dc2c2241248c9814b9550655e042eac/demo.ipynb)
+
+
 # Image Geometric Transformations
 This python file is used to perform various types of Geometric Transformation such as -
 1. Perspective Change - Zoom In/Zoom Out - Right/Left - X/Y Axis (8 functions)
@@ -10,9 +13,7 @@ This python file is used to perform various types of Geometric Transformation su
 All the functions have basic parameters of passing the Image, Image Width and Image Height along with passing of the Geometric Transformation FACTOR which is different for each type of transformtion.
 
 Using this Python Script - 
-1. Download the "imageAugmentation.py" file from the repository "image_augmentation".
+1. Download the "GeometricTransformations.py" file from the repository "img-geometric-transformation".
 2. Keep this file in same directory as your python files.
-3. Use "import imageAugmentation as ia" in your python file.
-4. Use the functions with 'ia', for example - "ia.rotateX(image, imageWidth, imageHeight, 60)" will return a rotated image by +60 degrees along X Axis.
-
-Note - The main intention of this script is to help create dataset for machine learning projects with ease.
+3. Use "import GeometricTransformations as gt" in your python file.
+4. Use the functions with 'gt', for example - "gt.rotateX(image, imageWidth, imageHeight, 60)" will return a rotated image by +60 degrees along X Axis.
